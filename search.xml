@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+    
+    <entry>
+      <title><![CDATA[Hexo博客搭建]]></title>
+      <url>%2F2017%2F02%2F07%2FHexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2F</url>
+      <content type="text"><![CDATA[hexo+github DIY博客以下是我自己搭建免费搭建博客的大致步骤，鄙人不才，如果有失误之处，望君能指点，已经加了评论功能，可以点赞评论哦！后面博客里我少上传图片，会导致上传和显示慢，而且博客就300M。 github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆 建立远程仓库]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[丁旭朋]]></title>
+      <url>%2F2017%2F02%2F06%2F%E4%B8%81%E6%97%AD%E6%9C%8B%2F</url>
+      <content type="text"></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>%2F2017%2F02%2F06%2Fhello-world%2F</url>
+      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post$ hexo new "My New Post" More info: Writing Run server$ hexo server More info: Server Generate static files$ hexo generate More info: Generating Deploy to remote sites$ hexo deploy More info: Deployment]]></content>
+    </entry>
+
+    
+  
+  
+</search>
