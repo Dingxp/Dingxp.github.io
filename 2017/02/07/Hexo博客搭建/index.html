@@ -86,20 +86,28 @@
 
 <meta name="description" content="hexo+github DIY博客以下是我自己搭建免费搭建博客的大致步骤，鄙人不才，如果有失误之处，望君能指点，已经加了评论功能，可以点赞评论哦！后面博客里我少上传图片，会导致上传和显示慢，而且博客就300M。
 github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
-建立远程仓库">
+建立远程仓库注意命名格式 Github名＋.github.io
+
+配置SS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo博客搭建">
 <meta property="og:url" content="http://yoursite.com/2017/02/07/Hexo博客搭建/index.html">
 <meta property="og:site_name" content="桃花坞里桃花庵/桃花庵里桃花仙">
 <meta property="og:description" content="hexo+github DIY博客以下是我自己搭建免费搭建博客的大致步骤，鄙人不才，如果有失误之处，望君能指点，已经加了评论功能，可以点赞评论哦！后面博客里我少上传图片，会导致上传和显示慢，而且博客就300M。
 github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
-建立远程仓库">
-<meta property="og:updated_time" content="2017-02-07T06:06:29.000Z">
+建立远程仓库注意命名格式 Github名＋.github.io
+
+配置SS">
+<meta property="og:image" content="http://yoursite.com/1.png">
+<meta property="og:updated_time" content="2017-02-13T14:40:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客搭建">
 <meta name="twitter:description" content="hexo+github DIY博客以下是我自己搭建免费搭建博客的大致步骤，鄙人不才，如果有失误之处，望君能指点，已经加了评论功能，可以点赞评论哦！后面博客里我少上传图片，会导致上传和显示慢，而且博客就300M。
 github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
-建立远程仓库">
+建立远程仓库注意命名格式 Github名＋.github.io
+
+配置SS">
+<meta name="twitter:image" content="http://yoursite.com/1.png">
 
 
 
@@ -398,7 +406,18 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
       
         <h1 id="hexo-github-DIY博客"><a href="#hexo-github-DIY博客" class="headerlink" title="hexo+github DIY博客"></a>hexo+github DIY博客</h1><p>以下是我自己搭建免费搭建博客的大致步骤，鄙人不才，如果有失误之处，望君能指点，已经加了评论功能，可以点赞评论哦！<br>后面博客里我少上传图片，会导致上传和显示慢，而且博客就300M。</p>
 <h1 id="github部分"><a href="#github部分" class="headerlink" title="github部分"></a>github部分</h1><h2 id="登录-注册"><a href="#登录-注册" class="headerlink" title="登录 注册"></a>登录 注册</h2><figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line"><span class="string">https:</span><span class="comment">//github.com/</span></div><div class="line">Sign <span class="string">up :</span> 注册</div><div class="line">sign <span class="string">in :</span> 登陆</div></pre></td></tr></table></figure>
-<h3 id="建立远程仓库"><a href="#建立远程仓库" class="headerlink" title="建立远程仓库"></a>建立远程仓库</h3>
+<h3 id="建立远程仓库"><a href="#建立远程仓库" class="headerlink" title="建立远程仓库"></a>建立远程仓库</h3><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">注意命名格式 Github名＋<span class="selector-class">.github</span><span class="selector-class">.io</span></div></pre></td></tr></table></figure>
+<p><img src="1.png" alt=""></p>
+<h3 id="配置SSH-key"><a href="#配置SSH-key" class="headerlink" title="配置SSH key"></a>配置SSH key</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><div class="line"><span class="variable">$ </span>ssh-keygen -t rsa -C <span class="string">"这里是你Github绑定的邮箱我的是QQ邮箱@qq.com"</span></div></pre></td></tr></table></figure>
+<p>如果你已经配置过，会提示是否覆盖y／n，直接输入y代表覆盖，生成新的秘钥，其余return就可以。<br>秘钥生成配置成功标志。</p>
+<figure class="highlight gherkin"><table><tr><td class="code"><pre><div class="line">+—[RSA 2048]——+</div><div class="line">|<span class="string">         ..+ o   </span>|</div><div class="line">|<span class="string">       .  O.= +  </span>|</div><div class="line">|<span class="string">  . . . o.oB O o </span>|</div><div class="line">|<span class="string"> . + o  o=. * *  </span>|</div><div class="line">|<span class="string">  = o  .So.  +   </span>|</div><div class="line">|<span class="string"> . + .  .  .     </span>|</div><div class="line">|<span class="string">. . o  .  . ..   </span>|</div><div class="line">|<span class="string"> o  o.o  E +. .  </span>|</div><div class="line">|<span class="string">o  .o*o.  . oo   </span>|</div><div class="line">+——[SHA256]——+</div></pre></td></tr></table></figure>
+<p>找到公钥<br>点击mac的空白处，电脑最上面前往打开，前往文件夹，或者快捷键 shift +commond +g</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><div class="line">前往--&gt;前往文件夹－－&gt;输入 ~<span class="regexp">/.ssh/id</span>_rsa.pub</div></pre></td></tr></table></figure>
+<p>复制公钥，前往Github配置</p>
+<figure class="highlight xl"><table><tr><td class="code"><pre><div class="line">博客仓库（<span class="function"><span class="title">dingxp</span>.github.io）--&gt;</span>点击<span class="function"><span class="title">settings</span> --&gt;</span>左侧 Deploy keys</div><div class="line">存在就删除，不存在就加上 刚才的公钥，key的名字随便写</div></pre></td></tr></table></figure>
+<h3 id="关联Github"><a href="#关联Github" class="headerlink" title="关联Github"></a>关联Github</h3><p>后面步骤中，当你发布文章Git终端执行hexo d的时候提示</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><div class="line">Username <span class="keyword">for</span> <span class="symbol">'https</span>:<span class="comment">//github.com':</span></div><div class="line">Password <span class="keyword">for</span> <span class="symbol">'https</span>:<span class="comment">//github.com':</span></div></pre></td></tr></table></figure>
+<h1 id="hexo部分"><a href="#hexo部分" class="headerlink" title="hexo部分"></a>hexo部分</h1><h2 id="安装homebrew"><a href="#安装homebrew" class="headerlink" title="安装homebrew"></a>安装homebrew</h2>
       
     </div>
 
@@ -439,6 +458,10 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/14/排序/" rel="prev" title="排序">
+                排序 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -516,7 +539,7 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -525,7 +548,7 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -569,7 +592,7 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo-github-DIY博客"><span class="nav-number">1.</span> <span class="nav-text">hexo+github DIY博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#github部分"><span class="nav-number">2.</span> <span class="nav-text">github部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#登录-注册"><span class="nav-number">2.1.</span> <span class="nav-text">登录 注册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建立远程仓库"><span class="nav-number">2.1.1.</span> <span class="nav-text">建立远程仓库</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo-github-DIY博客"><span class="nav-number">1.</span> <span class="nav-text">hexo+github DIY博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#github部分"><span class="nav-number">2.</span> <span class="nav-text">github部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#登录-注册"><span class="nav-number">2.1.</span> <span class="nav-text">登录 注册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建立远程仓库"><span class="nav-number">2.1.1.</span> <span class="nav-text">建立远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置SSH-key"><span class="nav-number">2.1.2.</span> <span class="nav-text">配置SSH key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联Github"><span class="nav-number">2.1.3.</span> <span class="nav-text">关联Github</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo部分"><span class="nav-number">3.</span> <span class="nav-text">hexo部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装homebrew"><span class="nav-number">3.1.</span> <span class="nav-text">安装homebrew</span></a></li></ol></li></ol></div>
             
 
           </div>

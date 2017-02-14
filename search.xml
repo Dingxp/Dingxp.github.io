@@ -3,9 +3,16 @@
   
     
     <entry>
+      <title><![CDATA[排序]]></title>
+      <url>%2F2017%2F02%2F14%2F%E6%8E%92%E5%BA%8F%2F</url>
+      <content type="text"><![CDATA[hexo+github DIY博客以下是我自己搭建免费搭建博客的大致步骤，鄙人不才，如果有失误之处，望君能指点，已经加了评论功能，可以点赞评论哦！后面博客里我少上传图片，会导致上传和显示慢，而且博客就300M。 数组排序取同一天NSMutableArray *dateMutablearray = [@[] mutableCopy]; NSArray *array1 = @[@"2014-04-01",@"2014-04-02",@"2014-04-03", @"2014-04-01",@"2014-04-02",@"2014-04-03", @"2014-04-01",@"2014-04-02",@"2014-04-03", @"2014-04-01",@"2014-04-02",@"2014-04-03", @"2014-04-01",@"2014-04-02",@"2014-04-03", @"2014-04-01",@"2014-04-02",@"2014-04-03", @"2014-04-04",@"2014-04-06",@"2014-04-08", @"2014-04-05",@"2014-04-07",@"2014-04-09",]; NSMutableArray *array = [NSMutableArray arrayWithArray:array1]; for (int i = 0; i &lt; array.count; i ++) &#123; NSString *string = array[ i]; NSMutableArray *tempArray = [@[] mutableCopy]; [tempArray addObject:string]; for (int j = i+1; j &lt; array.count; j ++) &#123; NSString *jstring = array[j]; NSLog(@"jstring:%@",jstring); if([string isEqualToString:jstring])&#123; NSLog(@"jvalue = kvalue"); [tempArray addObject:jstring]; [array removeObjectAtIndex:j]; &#125; &#125; [dateMutablearray addObject:tempArray]; &#125;NSLog(@"array:%@",array); NSLog(@"dateMutable:%@",dateMutablearray);]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[Hexo博客搭建]]></title>
       <url>%2F2017%2F02%2F07%2FHexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2F</url>
-      <content type="text"><![CDATA[hexo+github DIY博客以下是我自己搭建免费搭建博客的大致步骤，鄙人不才，如果有失误之处，望君能指点，已经加了评论功能，可以点赞评论哦！后面博客里我少上传图片，会导致上传和显示慢，而且博客就300M。 github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆 建立远程仓库]]></content>
+      <content type="text"><![CDATA[hexo+github DIY博客以下是我自己搭建免费搭建博客的大致步骤，鄙人不才，如果有失误之处，望君能指点，已经加了评论功能，可以点赞评论哦！后面博客里我少上传图片，会导致上传和显示慢，而且博客就300M。 github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆 建立远程仓库注意命名格式 Github名＋.github.io 配置SSH key$ ssh-keygen -t rsa -C "这里是你Github绑定的邮箱我的是QQ邮箱@qq.com" 如果你已经配置过，会提示是否覆盖y／n，直接输入y代表覆盖，生成新的秘钥，其余return就可以。秘钥生成配置成功标志。 +—[RSA 2048]——+| ..+ o || . O.= + || . . . o.oB O o || . + o o=. * * || = o .So. + || . + . . . ||. . o . . .. || o o.o E +. . ||o .o*o. . oo |+——[SHA256]——+ 找到公钥点击mac的空白处，电脑最上面前往打开，前往文件夹，或者快捷键 shift +commond +g 前往--&gt;前往文件夹－－&gt;输入 ~/.ssh/id_rsa.pub 复制公钥，前往Github配置 博客仓库（dingxp.github.io）--&gt;点击settings --&gt;左侧 Deploy keys存在就删除，不存在就加上 刚才的公钥，key的名字随便写 关联Github后面步骤中，当你发布文章Git终端执行hexo d的时候提示 Username for 'https://github.com':Password for 'https://github.com': hexo部分安装homebrew]]></content>
     </entry>
 
     
