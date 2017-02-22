@@ -84,30 +84,19 @@
 
 
 
-<meta name="description" content="hexo+github DIY博客以下是我自己搭建免费搭建博客的大致步骤，鄙人不才，如果有失误之处，望君能指点，已经加了评论功能，可以点赞评论哦！后面博客里我少上传图片，会导致上传和显示慢，而且博客就300M。
-github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
-建立远程仓库注意命名格式 Github名＋.github.io
-
-配置SS">
+<meta name="description" content="ios定时器NSTimerUIScrollView 拖动时执行的是 UITrackingRunLoopMode，会导致暂停定时器，等恢复为 NSDefaultRunLoopMode 时才恢复定时器。所以如果需要定时器在 UIScrollView 拖动时也不影响的话，建议添加到 UITrackingRunLoopMode 或 NSRunLoopCommonModes 中：
+NSTimer *time">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo博客搭建">
-<meta property="og:url" content="http://yoursite.com/2017/02/07/Hexo博客搭建/index.html">
+<meta property="og:title" content="IOS定时器">
+<meta property="og:url" content="http://yoursite.com/2017/02/22/IOS定时器/index.html">
 <meta property="og:site_name" content="桃花坞里桃花庵/桃花庵里桃花仙">
-<meta property="og:description" content="hexo+github DIY博客以下是我自己搭建免费搭建博客的大致步骤，鄙人不才，如果有失误之处，望君能指点，已经加了评论功能，可以点赞评论哦！后面博客里我少上传图片，会导致上传和显示慢，而且博客就300M。
-github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
-建立远程仓库注意命名格式 Github名＋.github.io
-
-配置SS">
-<meta property="og:image" content="http://yoursite.com/1.png">
-<meta property="og:updated_time" content="2017-02-13T14:40:57.000Z">
+<meta property="og:description" content="ios定时器NSTimerUIScrollView 拖动时执行的是 UITrackingRunLoopMode，会导致暂停定时器，等恢复为 NSDefaultRunLoopMode 时才恢复定时器。所以如果需要定时器在 UIScrollView 拖动时也不影响的话，建议添加到 UITrackingRunLoopMode 或 NSRunLoopCommonModes 中：
+NSTimer *time">
+<meta property="og:updated_time" content="2017-02-22T14:37:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo博客搭建">
-<meta name="twitter:description" content="hexo+github DIY博客以下是我自己搭建免费搭建博客的大致步骤，鄙人不才，如果有失误之处，望君能指点，已经加了评论功能，可以点赞评论哦！后面博客里我少上传图片，会导致上传和显示慢，而且博客就300M。
-github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
-建立远程仓库注意命名格式 Github名＋.github.io
-
-配置SS">
-<meta name="twitter:image" content="http://yoursite.com/1.png">
+<meta name="twitter:title" content="IOS定时器">
+<meta name="twitter:description" content="ios定时器NSTimerUIScrollView 拖动时执行的是 UITrackingRunLoopMode，会导致暂停定时器，等恢复为 NSDefaultRunLoopMode 时才恢复定时器。所以如果需要定时器在 UIScrollView 拖动时也不影响的话，建议添加到 UITrackingRunLoopMode 或 NSRunLoopCommonModes 中：
+NSTimer *time">
 
 
 
@@ -135,13 +124,13 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/07/Hexo博客搭建/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/22/IOS定时器/"/>
 
 
 
 
 
-  <title> Hexo博客搭建 | 桃花坞里桃花庵/桃花庵里桃花仙 </title>
+  <title> IOS定时器 | 桃花坞里桃花庵/桃花庵里桃花仙 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -297,7 +286,7 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/07/Hexo博客搭建/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/22/IOS定时器/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="DingXP">
@@ -321,7 +310,7 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
             
             
               
-                Hexo博客搭建
+                IOS定时器
               
             
           </h1>
@@ -336,8 +325,8 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-07T13:57:12+08:00">
-                2017-02-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-22T22:27:30+08:00">
+                2017-02-22
               </time>
             
 
@@ -359,8 +348,8 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tool/" itemprop="url" rel="index">
-                    <span itemprop="name">Tool</span>
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
                   </a>
                 </span>
 
@@ -377,8 +366,8 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/07/Hexo博客搭建/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/07/Hexo博客搭建/" itemprop="commentCount"></span>
+                <a href="/2017/02/22/IOS定时器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/22/IOS定时器/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -404,20 +393,13 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
       
 
       
-        <h1 id="hexo-github-DIY博客"><a href="#hexo-github-DIY博客" class="headerlink" title="hexo+github DIY博客"></a>hexo+github DIY博客</h1><p>以下是我自己搭建免费搭建博客的大致步骤，鄙人不才，如果有失误之处，望君能指点，已经加了评论功能，可以点赞评论哦！<br>后面博客里我少上传图片，会导致上传和显示慢，而且博客就300M。</p>
-<h1 id="github部分"><a href="#github部分" class="headerlink" title="github部分"></a>github部分</h1><h2 id="登录-注册"><a href="#登录-注册" class="headerlink" title="登录 注册"></a>登录 注册</h2><figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line"><span class="string">https:</span><span class="comment">//github.com/</span></div><div class="line">Sign <span class="string">up :</span> 注册</div><div class="line">sign <span class="string">in :</span> 登陆</div></pre></td></tr></table></figure>
-<h3 id="建立远程仓库"><a href="#建立远程仓库" class="headerlink" title="建立远程仓库"></a>建立远程仓库</h3><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">注意命名格式 Github名＋<span class="selector-class">.github</span><span class="selector-class">.io</span></div></pre></td></tr></table></figure>
-<p><img src="1.png" alt=""></p>
-<h3 id="配置SSH-key"><a href="#配置SSH-key" class="headerlink" title="配置SSH key"></a>配置SSH key</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><div class="line"><span class="variable">$ </span>ssh-keygen -t rsa -C <span class="string">"这里是你Github绑定的邮箱我的是QQ邮箱@qq.com"</span></div></pre></td></tr></table></figure>
-<p>如果你已经配置过，会提示是否覆盖y／n，直接输入y代表覆盖，生成新的秘钥，其余return就可以。<br>秘钥生成配置成功标志。</p>
-<figure class="highlight gherkin"><table><tr><td class="code"><pre><div class="line">+—[RSA 2048]——+</div><div class="line">|<span class="string">         ..+ o   </span>|</div><div class="line">|<span class="string">       .  O.= +  </span>|</div><div class="line">|<span class="string">  . . . o.oB O o </span>|</div><div class="line">|<span class="string"> . + o  o=. * *  </span>|</div><div class="line">|<span class="string">  = o  .So.  +   </span>|</div><div class="line">|<span class="string"> . + .  .  .     </span>|</div><div class="line">|<span class="string">. . o  .  . ..   </span>|</div><div class="line">|<span class="string"> o  o.o  E +. .  </span>|</div><div class="line">|<span class="string">o  .o*o.  . oo   </span>|</div><div class="line">+——[SHA256]——+</div></pre></td></tr></table></figure>
-<p>找到公钥<br>点击mac的空白处，电脑最上面前往打开，前往文件夹，或者快捷键 shift +commond +g</p>
-<figure class="highlight elixir"><table><tr><td class="code"><pre><div class="line">前往--&gt;前往文件夹－－&gt;输入 ~<span class="regexp">/.ssh/id</span>_rsa.pub</div></pre></td></tr></table></figure>
-<p>复制公钥，前往Github配置</p>
-<figure class="highlight xl"><table><tr><td class="code"><pre><div class="line">博客仓库（<span class="function"><span class="title">dingxp</span>.github.io）--&gt;</span>点击<span class="function"><span class="title">settings</span> --&gt;</span>左侧 Deploy keys</div><div class="line">存在就删除，不存在就加上 刚才的公钥，key的名字随便写</div></pre></td></tr></table></figure>
-<h3 id="关联Github"><a href="#关联Github" class="headerlink" title="关联Github"></a>关联Github</h3><p>后面步骤中，当你发布文章Git终端执行hexo d的时候提示</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><div class="line">Username <span class="keyword">for</span> <span class="symbol">'https</span>:<span class="comment">//github.com':</span></div><div class="line">Password <span class="keyword">for</span> <span class="symbol">'https</span>:<span class="comment">//github.com':</span></div></pre></td></tr></table></figure>
-<h1 id="hexo部分"><a href="#hexo部分" class="headerlink" title="hexo部分"></a>hexo部分</h1><h2 id="安装homebrew"><a href="#安装homebrew" class="headerlink" title="安装homebrew"></a>安装homebrew</h2>
+        <h1 id="ios定时器"><a href="#ios定时器" class="headerlink" title="ios定时器"></a>ios定时器</h1><h2 id="NSTimer"><a href="#NSTimer" class="headerlink" title="NSTimer"></a>NSTimer</h2><p>UIScrollView 拖动时执行的是 UITrackingRunLoopMode，会导致暂停定时器，等恢复为 NSDefaultRunLoopMode 时才恢复定时器。<br>所以如果需要定时器在 UIScrollView 拖动时也不影响的话，建议添加到 UITrackingRunLoopMode 或 NSRunLoopCommonModes 中：</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line">NSTimer *timer = [NSTimer <span class="string">timerWithTimeInterval:</span><span class="number">5</span> <span class="string">target:</span>self <span class="string">selector:</span><span class="meta">@selector</span>(timerAction) <span class="string">userInfo:</span>nil <span class="string">repeats:</span>YES];</div><div class="line">[[NSRunLoop mainRunLoop] <span class="string">addTimer:</span>timer <span class="string">forMode:</span> UITrackingRunLoopMode]; <span class="comment">///&lt; 或者 NSRunLoopCommonModes</span></div></pre></td></tr></table></figure>
+<h2 id="GCD方式"><a href="#GCD方式" class="headerlink" title="GCD方式"></a>GCD方式</h2><figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">NSTimeInterval period = <span class="number">1.0</span>; <span class="comment">//设置时间间隔</span></div><div class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</div><div class="line">dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, <span class="number">0</span>, <span class="number">0</span>, queue);</div><div class="line">dispatch_source_set_timer(_timer, dispatch_walltime(NULL, <span class="number">0</span>), period * NSEC_PER_SEC, <span class="number">0</span>); <span class="comment">//每秒执行</span></div><div class="line">dispatch_source_set_event_handler(_timer, ^&#123;</div><div class="line">      <span class="comment">//在这里执行事件</span></div><div class="line"> &#125;);</div><div class="line">dispatch_resume(_timer);</div></pre></td></tr></table></figure>
+<h2 id="CADisplayLink"><a href="#CADisplayLink" class="headerlink" title="CADisplayLink"></a>CADisplayLink</h2><h3 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h3><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">self</span>.displayLink = [<span class="built_in">CADisplayLink</span> displayLinkWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(handleDisplayLink:)];    </div><div class="line">[<span class="keyword">self</span>.displayLink addToRunLoop:[<span class="built_in">NSRunLoop</span> currentRunLoop] forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</div></pre></td></tr></table></figure>
+<h3 id="停止方法"><a href="#停止方法" class="headerlink" title="停止方法"></a>停止方法</h3><figure class="highlight mipsasm"><table><tr><td class="code"><pre><div class="line">[self.<span class="keyword">displayLink </span>invalidate]<span class="comment">;  </span></div><div class="line">self.<span class="keyword">displayLink </span>= nil<span class="comment">;</span></div><div class="line"> <span class="comment">/**当把CADisplayLink对象add到runloop中后，selector就能被周期性调用，类似于重复的NSTimer被启动了；执行invalidate操作时，CADisplayLink对象就会从runloop中移除，selector调用也随即停止，类似于NSTimer的invalidate方法。**/</span></div></pre></td></tr></table></figure>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">屏幕刷新时调用</div><div class="line"></div><div class="line"><span class="built_in">CADisplayLink</span>是一个能让我们以和屏幕刷新率同步的频率将特定的内容画到屏幕上的定时器类。<span class="built_in">CADisplayLink</span>以特定模式注册到runloop后，每当屏幕显示内容刷新结束的时候，runloop就会向<span class="built_in">CADisplayLink</span>指定的target发送一次指定的selector消息， <span class="built_in">CADisplayLink</span>类对应的selector就会被调用一次。所以通常情况下，按照iOS设备屏幕的刷新率<span class="number">60</span>次/秒</div><div class="line"></div><div class="line">延迟</div><div class="line"></div><div class="line">iOS设备的屏幕刷新频率是固定的，<span class="built_in">CADisplayLink</span>在正常情况下会在每次刷新结束都被调用，精确度相当高。但如果调用的方法比较耗时，超过了屏幕刷新周期，就会导致跳过若干次回调调用机会。</div><div class="line"></div><div class="line">如果CPU过于繁忙，无法保证屏幕<span class="number">60</span>次/秒的刷新率，就会导致跳过若干次调用回调方法的机会，跳过次数取决CPU的忙碌程度。</div><div class="line"></div><div class="line">使用场景</div><div class="line"></div><div class="line">从原理上可以看出，<span class="built_in">CADisplayLink</span>适合做界面的不停重绘，比如视频播放的时候需要不停地获取下一帧用于界面渲染。</div></pre></td></tr></table></figure>
+<h3 id="重要属性"><a href="#重要属性" class="headerlink" title="重要属性"></a>重要属性</h3><figure class="highlight oxygene"><table><tr><td class="code"><pre><div class="line">frameInterval</div><div class="line"></div><div class="line">NSInteger类型的值，用来设置间隔多少帧调用一次<span class="keyword">selector</span>方法，默认值是<span class="number">1</span>，即每帧都调用一次。</div><div class="line"></div><div class="line">duration</div><div class="line"></div><div class="line"><span class="keyword">readOnly</span>的CFTimeInterval值，表示两次屏幕刷新之间的时间间隔。需要注意的是，该属性在target的<span class="keyword">selector</span>被首次调用以后才会被赋值。<span class="keyword">selector</span>的调用间隔时间计算方式是：调用间隔时间 = duration × frameInterval。</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -449,8 +431,8 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/06/丁旭朋/" rel="next" title="丁旭朋">
-                <i class="fa fa-chevron-left"></i> 丁旭朋
+              <a href="/2017/02/22/字符串的一些方法/" rel="next" title="字符串的一些方法">
+                <i class="fa fa-chevron-left"></i> 字符串的一些方法
               </a>
             
           </div>
@@ -458,10 +440,6 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/14/排序/" rel="prev" title="排序">
-                排序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -487,8 +465,8 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/07/Hexo博客搭建/"
-           data-title="Hexo博客搭建" data-url="http://yoursite.com/2017/02/07/Hexo博客搭建/">
+      <div class="ds-thread" data-thread-key="2017/02/22/IOS定时器/"
+           data-title="IOS定时器" data-url="http://yoursite.com/2017/02/22/IOS定时器/">
       </div>
     
   </div>
@@ -592,7 +570,7 @@ github部分登录 注册https://github.com/Sign up : 注册sign in : 登陆
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo-github-DIY博客"><span class="nav-number">1.</span> <span class="nav-text">hexo+github DIY博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#github部分"><span class="nav-number">2.</span> <span class="nav-text">github部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#登录-注册"><span class="nav-number">2.1.</span> <span class="nav-text">登录 注册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建立远程仓库"><span class="nav-number">2.1.1.</span> <span class="nav-text">建立远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置SSH-key"><span class="nav-number">2.1.2.</span> <span class="nav-text">配置SSH key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联Github"><span class="nav-number">2.1.3.</span> <span class="nav-text">关联Github</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo部分"><span class="nav-number">3.</span> <span class="nav-text">hexo部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装homebrew"><span class="nav-number">3.1.</span> <span class="nav-text">安装homebrew</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ios定时器"><span class="nav-number">1.</span> <span class="nav-text">ios定时器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NSTimer"><span class="nav-number">1.1.</span> <span class="nav-text">NSTimer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD方式"><span class="nav-number">1.2.</span> <span class="nav-text">GCD方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CADisplayLink"><span class="nav-number">1.3.</span> <span class="nav-text">CADisplayLink</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">创建方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#停止方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">停止方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">1.3.3.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要属性"><span class="nav-number">1.3.4.</span> <span class="nav-text">重要属性</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -284,6 +284,466 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/22/IOS定时器/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="DingXP">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="桃花坞里桃花庵/桃花庵里桃花仙">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="桃花坞里桃花庵/桃花庵里桃花仙" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/22/IOS定时器/" itemprop="url">
+                  IOS定时器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-22T22:27:30+08:00">
+                2017-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/22/IOS定时器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/22/IOS定时器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ios定时器"><a href="#ios定时器" class="headerlink" title="ios定时器"></a>ios定时器</h1><h2 id="NSTimer"><a href="#NSTimer" class="headerlink" title="NSTimer"></a>NSTimer</h2><p>UIScrollView 拖动时执行的是 UITrackingRunLoopMode，会导致暂停定时器，等恢复为 NSDefaultRunLoopMode 时才恢复定时器。<br>所以如果需要定时器在 UIScrollView 拖动时也不影响的话，建议添加到 UITrackingRunLoopMode 或 NSRunLoopCommonModes 中：</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line">NSTimer *timer = [NSTimer <span class="string">timerWithTimeInterval:</span><span class="number">5</span> <span class="string">target:</span>self <span class="string">selector:</span><span class="meta">@selector</span>(timerAction) <span class="string">userInfo:</span>nil <span class="string">repeats:</span>YES];</div><div class="line">[[NSRunLoop mainRunLoop] <span class="string">addTimer:</span>timer <span class="string">forMode:</span> UITrackingRunLoopMode]; <span class="comment">///&lt; 或者 NSRunLoopCommonModes</span></div></pre></td></tr></table></figure>
+<h2 id="GCD方式"><a href="#GCD方式" class="headerlink" title="GCD方式"></a>GCD方式</h2><figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">NSTimeInterval period = <span class="number">1.0</span>; <span class="comment">//设置时间间隔</span></div><div class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</div><div class="line">dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, <span class="number">0</span>, <span class="number">0</span>, queue);</div><div class="line">dispatch_source_set_timer(_timer, dispatch_walltime(NULL, <span class="number">0</span>), period * NSEC_PER_SEC, <span class="number">0</span>); <span class="comment">//每秒执行</span></div><div class="line">dispatch_source_set_event_handler(_timer, ^&#123;</div><div class="line">      <span class="comment">//在这里执行事件</span></div><div class="line"> &#125;);</div><div class="line">dispatch_resume(_timer);</div></pre></td></tr></table></figure>
+<h2 id="CADisplayLink"><a href="#CADisplayLink" class="headerlink" title="CADisplayLink"></a>CADisplayLink</h2><h3 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h3><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="keyword">self</span>.displayLink = [<span class="built_in">CADisplayLink</span> displayLinkWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(handleDisplayLink:)];    </div><div class="line">[<span class="keyword">self</span>.displayLink addToRunLoop:[<span class="built_in">NSRunLoop</span> currentRunLoop] forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</div></pre></td></tr></table></figure>
+<h3 id="停止方法"><a href="#停止方法" class="headerlink" title="停止方法"></a>停止方法</h3><figure class="highlight mipsasm"><table><tr><td class="code"><pre><div class="line">[self.<span class="keyword">displayLink </span>invalidate]<span class="comment">;  </span></div><div class="line">self.<span class="keyword">displayLink </span>= nil<span class="comment">;</span></div><div class="line"> <span class="comment">/**当把CADisplayLink对象add到runloop中后，selector就能被周期性调用，类似于重复的NSTimer被启动了；执行invalidate操作时，CADisplayLink对象就会从runloop中移除，selector调用也随即停止，类似于NSTimer的invalidate方法。**/</span></div></pre></td></tr></table></figure>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">屏幕刷新时调用</div><div class="line"></div><div class="line"><span class="built_in">CADisplayLink</span>是一个能让我们以和屏幕刷新率同步的频率将特定的内容画到屏幕上的定时器类。<span class="built_in">CADisplayLink</span>以特定模式注册到runloop后，每当屏幕显示内容刷新结束的时候，runloop就会向<span class="built_in">CADisplayLink</span>指定的target发送一次指定的selector消息， <span class="built_in">CADisplayLink</span>类对应的selector就会被调用一次。所以通常情况下，按照iOS设备屏幕的刷新率<span class="number">60</span>次/秒</div><div class="line"></div><div class="line">延迟</div><div class="line"></div><div class="line">iOS设备的屏幕刷新频率是固定的，<span class="built_in">CADisplayLink</span>在正常情况下会在每次刷新结束都被调用，精确度相当高。但如果调用的方法比较耗时，超过了屏幕刷新周期，就会导致跳过若干次回调调用机会。</div><div class="line"></div><div class="line">如果CPU过于繁忙，无法保证屏幕<span class="number">60</span>次/秒的刷新率，就会导致跳过若干次调用回调方法的机会，跳过次数取决CPU的忙碌程度。</div><div class="line"></div><div class="line">使用场景</div><div class="line"></div><div class="line">从原理上可以看出，<span class="built_in">CADisplayLink</span>适合做界面的不停重绘，比如视频播放的时候需要不停地获取下一帧用于界面渲染。</div></pre></td></tr></table></figure>
+<h3 id="重要属性"><a href="#重要属性" class="headerlink" title="重要属性"></a>重要属性</h3><figure class="highlight oxygene"><table><tr><td class="code"><pre><div class="line">frameInterval</div><div class="line"></div><div class="line">NSInteger类型的值，用来设置间隔多少帧调用一次<span class="keyword">selector</span>方法，默认值是<span class="number">1</span>，即每帧都调用一次。</div><div class="line"></div><div class="line">duration</div><div class="line"></div><div class="line"><span class="keyword">readOnly</span>的CFTimeInterval值，表示两次屏幕刷新之间的时间间隔。需要注意的是，该属性在target的<span class="keyword">selector</span>被首次调用以后才会被赋值。<span class="keyword">selector</span>的调用间隔时间计算方式是：调用间隔时间 = duration × frameInterval。</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/22/字符串的一些方法/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="DingXP">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="桃花坞里桃花庵/桃花庵里桃花仙">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="桃花坞里桃花庵/桃花庵里桃花仙" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/22/字符串的一些方法/" itemprop="url">
+                  字符串的一些方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-22T12:45:29+08:00">
+                2017-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/22/字符串的一些方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/22/字符串的一些方法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="字符串的一些方法"><a href="#字符串的一些方法" class="headerlink" title="字符串的一些方法"></a>字符串的一些方法</h1><h2 id="全局被我使用的字符串："><a href="#全局被我使用的字符串：" class="headerlink" title="全局被我使用的字符串："></a>全局被我使用的字符串：</h2><figure class="highlight applescript"><table><tr><td class="code"><pre><div class="line">NSString *<span class="built_in">string</span> = @<span class="string">"街上,走着一个女孩，好清秀,牵着人们的眼球,就象,花儿一样可爱,好温柔,看也看不够"</span>;</div></pre></td></tr></table></figure>
+<h3 id="截取字符串的-第10个-包括第10个-之前字符"><a href="#截取字符串的-第10个-包括第10个-之前字符" class="headerlink" title="截取字符串的 第10个(包括第10个) 之前字符"></a>截取字符串的 第10个(包括第10个) 之前字符</h3><figure class="highlight armasm"><table><tr><td class="code"><pre><div class="line"><span class="symbol">NSString</span> *<span class="keyword">stringOne </span>= [<span class="keyword">string </span><span class="keyword">substringToIndex:10];</span></div><div class="line"></div><div class="line"><span class="symbol">NSLog</span>(<span class="comment">@"stringOne = %@",stringOne);</span></div></pre></td></tr></table></figure>
+<h3 id="截取字符串的-第10个-包括第10个-之后字符"><a href="#截取字符串的-第10个-包括第10个-之后字符" class="headerlink" title="截取字符串的 第10个(包括第10个) 之后字符"></a>截取字符串的 第10个(包括第10个) 之后字符</h3><figure class="highlight armasm"><table><tr><td class="code"><pre><div class="line"><span class="symbol">NSString</span> *<span class="keyword">stringTwo </span>= [<span class="keyword">string </span><span class="keyword">substringFromIndex:10];</span></div><div class="line"></div><div class="line"><span class="symbol">NSLog</span>(<span class="comment">@"stringTwo = %@",stringTwo);</span></div></pre></td></tr></table></figure>
+<h3 id="截图字符串第4个（但不包括第4个）后的4位"><a href="#截图字符串第4个（但不包括第4个）后的4位" class="headerlink" title="截图字符串第4个（但不包括第4个）后的4位"></a>截图字符串第4个（但不包括第4个）后的4位</h3><figure class="highlight mipsasm"><table><tr><td class="code"><pre><div class="line">     NSString* stringOne =[string <span class="keyword">substringWithRange:NSMakeRange(4, </span><span class="number">2</span>)]<span class="comment">;</span></div><div class="line">NSLog(@<span class="string">"stringOne = %@"</span>,stringOne)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<h3 id="字符串的替换（也可以相当于删除用“”替换）"><a href="#字符串的替换（也可以相当于删除用“”替换）" class="headerlink" title="字符串的替换（也可以相当于删除用“”替换）"></a>字符串的替换（也可以相当于删除用“”替换）</h3><figure class="highlight ebnf"><table><tr><td class="code"><pre><div class="line"><span class="attribute">stringOne</span> = [stringOne stringByReplacingOccurrencesOfString:@<span class="string">":"</span> withString:@<span class="string">""</span>];</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/22/常见的error/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="DingXP">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="桃花坞里桃花庵/桃花庵里桃花仙">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="桃花坞里桃花庵/桃花庵里桃花仙" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/22/常见的error/" itemprop="url">
+                   常见的error
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-22T12:42:35+08:00">
+                2017-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/22/常见的error/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/22/常见的error/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="常见的erroor"><a href="#常见的erroor" class="headerlink" title="常见的erroor"></a>常见的erroor</h1>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/21/保存视频/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -399,7 +859,7 @@
             <h1 id="保存视频"><a href="#保存视频" class="headerlink" title="保存视频"></a>保存视频</h1><p>//部分代码，注意文件夹后缀加上保存文件的类型，比如mp3、mp4、（本人深有体会，因为没加后缀，搞了好长时间）</p>
 <figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line">[self <span class="string">writeToCachePath:</span>downloadData <span class="string">time:</span>media.timeCreated];</div><div class="line"></div><div class="line"><span class="comment">//数据写入缓存</span></div><div class="line">- (<span class="keyword">void</span>)<span class="string">writeToCachePath:</span>(id)cacheData <span class="string">time:</span>(NSString*)createTime &#123;</div><div class="line">    NSString * documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) <span class="string">objectAtIndex:</span><span class="number">0</span>];</div><div class="line">    createTime = [createTime <span class="string">stringByReplacingOccurrencesOfString:</span>@<span class="string">"-"</span> <span class="string">withString:</span>@<span class="string">""</span>];</div><div class="line">    createTime = [createTime <span class="string">stringByReplacingOccurrencesOfString:</span>@<span class="string">"/"</span> <span class="string">withString:</span>@<span class="string">""</span>];</div><div class="line">    createTime = [createTime <span class="string">stringByReplacingOccurrencesOfString:</span>@<span class="string">" "</span> <span class="string">withString:</span>@<span class="string">""</span>];</div><div class="line"></div><div class="line"> NSString* videoCachePath = [documentsDirectory <span class="string">stringByAppendingPathComponent:</span>[NSString <span class="string">stringWithFormat:</span>@<span class="string">"videodingxu/%@.mp4"</span>,createTime]];</div><div class="line"></div><div class="line">    [cacheData <span class="string">writeToFile:</span>videoCachePath <span class="string">atomically:</span>YES];</div><div class="line">    </div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>//下面这段代码是去除多余的标点符号</p>
-<figure class="highlight plain"><figcaption><span>= [createTime stringByReplacingOccurrencesOfString:@"-" withString:@""];</span></figcaption><table><tr><td class="code"><pre><div class="line">createTime = [createTime stringByReplacingOccurrencesOfString:@&quot;/&quot; withString:@&quot;&quot;];</div><div class="line">createTime = [createTime stringByReplacingOccurre</div></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="code"><pre><div class="line"><span class="attr">createTime</span> = [createTime stringByReplacingOccurrencesOfString:@<span class="string">"-"</span> withString:@<span class="string">""</span>];</div><div class="line"><span class="attr">createTime</span> = [createTime stringByReplacingOccurrencesOfString:@<span class="string">"/"</span> withString:@<span class="string">""</span>];</div><div class="line"><span class="attr">createTime</span> = [createTime stringByReplacingOccurre</div></pre></td></tr></table></figure>
           
         
       
@@ -1364,146 +1824,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/06/hello-world/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="DingXP">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="桃花坞里桃花庵/桃花庵里桃花仙">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="桃花坞里桃花庵/桃花庵里桃花仙" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/06/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-06T17:29:46+08:00">
-                2017-02-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/06/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/06/hello-world/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
           
           </div>
@@ -1548,7 +1875,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

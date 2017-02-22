@@ -3,9 +3,30 @@
   
     
     <entry>
+      <title><![CDATA[IOS定时器]]></title>
+      <url>%2F2017%2F02%2F22%2FIOS%E5%AE%9A%E6%97%B6%E5%99%A8%2F</url>
+      <content type="text"><![CDATA[ios定时器NSTimerUIScrollView 拖动时执行的是 UITrackingRunLoopMode，会导致暂停定时器，等恢复为 NSDefaultRunLoopMode 时才恢复定时器。所以如果需要定时器在 UIScrollView 拖动时也不影响的话，建议添加到 UITrackingRunLoopMode 或 NSRunLoopCommonModes 中： NSTimer *timer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];[[NSRunLoop mainRunLoop] addTimer:timer forMode: UITrackingRunLoopMode]; ///&lt; 或者 NSRunLoopCommonModes GCD方式NSTimeInterval period = 1.0; //设置时间间隔dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0); //每秒执行dispatch_source_set_event_handler(_timer, ^&#123; //在这里执行事件 &#125;);dispatch_resume(_timer); CADisplayLink创建方法self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(handleDisplayLink:)]; [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode]; 停止方法[self.displayLink invalidate]; self.displayLink = nil; /**当把CADisplayLink对象add到runloop中后，selector就能被周期性调用，类似于重复的NSTimer被启动了；执行invalidate操作时，CADisplayLink对象就会从runloop中移除，selector调用也随即停止，类似于NSTimer的invalidate方法。**/ 特性屏幕刷新时调用CADisplayLink是一个能让我们以和屏幕刷新率同步的频率将特定的内容画到屏幕上的定时器类。CADisplayLink以特定模式注册到runloop后，每当屏幕显示内容刷新结束的时候，runloop就会向CADisplayLink指定的target发送一次指定的selector消息， CADisplayLink类对应的selector就会被调用一次。所以通常情况下，按照iOS设备屏幕的刷新率60次/秒延迟iOS设备的屏幕刷新频率是固定的，CADisplayLink在正常情况下会在每次刷新结束都被调用，精确度相当高。但如果调用的方法比较耗时，超过了屏幕刷新周期，就会导致跳过若干次回调调用机会。如果CPU过于繁忙，无法保证屏幕60次/秒的刷新率，就会导致跳过若干次调用回调方法的机会，跳过次数取决CPU的忙碌程度。使用场景从原理上可以看出，CADisplayLink适合做界面的不停重绘，比如视频播放的时候需要不停地获取下一帧用于界面渲染。 重要属性frameIntervalNSInteger类型的值，用来设置间隔多少帧调用一次selector方法，默认值是1，即每帧都调用一次。durationreadOnly的CFTimeInterval值，表示两次屏幕刷新之间的时间间隔。需要注意的是，该属性在target的selector被首次调用以后才会被赋值。selector的调用间隔时间计算方式是：调用间隔时间 = duration × frameInterval。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[字符串的一些方法]]></title>
+      <url>%2F2017%2F02%2F22%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%2F</url>
+      <content type="text"><![CDATA[字符串的一些方法全局被我使用的字符串：NSString *string = @"街上,走着一个女孩，好清秀,牵着人们的眼球,就象,花儿一样可爱,好温柔,看也看不够"; 截取字符串的 第10个(包括第10个) 之前字符NSString *stringOne = [string substringToIndex:10];NSLog(@"stringOne = %@",stringOne); 截取字符串的 第10个(包括第10个) 之后字符NSString *stringTwo = [string substringFromIndex:10];NSLog(@"stringTwo = %@",stringTwo); 截图字符串第4个（但不包括第4个）后的4位 NSString* stringOne =[string substringWithRange:NSMakeRange(4, 2)];NSLog(@"stringOne = %@",stringOne); 字符串的替换（也可以相当于删除用“”替换）stringOne = [stringOne stringByReplacingOccurrencesOfString:@":" withString:@""];]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[常见的error]]></title>
+      <url>%2F2017%2F02%2F22%2F%E5%B8%B8%E8%A7%81%E7%9A%84error%2F</url>
+      <content type="text"><![CDATA[常见的erroor]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[保存视频]]></title>
       <url>%2F2017%2F02%2F21%2F%E4%BF%9D%E5%AD%98%E8%A7%86%E9%A2%91%2F</url>
-      <content type="text"><![CDATA[保存视频//部分代码，注意文件夹后缀加上保存文件的类型，比如mp3、mp4、（本人深有体会，因为没加后缀，搞了好长时间） [self writeToCachePath:downloadData time:media.timeCreated];//数据写入缓存- (void)writeToCachePath:(id)cacheData time:(NSString*)createTime &#123; NSString * documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; createTime = [createTime stringByReplacingOccurrencesOfString:@"-" withString:@""]; createTime = [createTime stringByReplacingOccurrencesOfString:@"/" withString:@""]; createTime = [createTime stringByReplacingOccurrencesOfString:@" " withString:@""]; NSString* videoCachePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"videodingxu/%@.mp4",createTime]]; [cacheData writeToFile:videoCachePath atomically:YES]; &#125; //下面这段代码是去除多余的标点符号 = [createTime stringByReplacingOccurrencesOfString:@"-" withString:@""];createTime = [createTime stringByReplacingOccurrencesOfString:@&quot;/&quot; withString:@&quot;&quot;];createTime = [createTime stringByReplacingOccurre]]></content>
+      <content type="text"><![CDATA[保存视频//部分代码，注意文件夹后缀加上保存文件的类型，比如mp3、mp4、（本人深有体会，因为没加后缀，搞了好长时间） [self writeToCachePath:downloadData time:media.timeCreated];//数据写入缓存- (void)writeToCachePath:(id)cacheData time:(NSString*)createTime &#123; NSString * documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; createTime = [createTime stringByReplacingOccurrencesOfString:@"-" withString:@""]; createTime = [createTime stringByReplacingOccurrencesOfString:@"/" withString:@""]; createTime = [createTime stringByReplacingOccurrencesOfString:@" " withString:@""]; NSString* videoCachePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"videodingxu/%@.mp4",createTime]]; [cacheData writeToFile:videoCachePath atomically:YES]; &#125; //下面这段代码是去除多余的标点符号 createTime = [createTime stringByReplacingOccurrencesOfString:@"-" withString:@""];createTime = [createTime stringByReplacingOccurrencesOfString:@"/" withString:@""];createTime = [createTime stringByReplacingOccurre]]></content>
     </entry>
 
     

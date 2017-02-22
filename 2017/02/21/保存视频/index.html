@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="桃花坞里桃花庵/桃花庵里桃花仙">
 <meta property="og:description" content="保存视频//部分代码，注意文件夹后缀加上保存文件的类型，比如mp3、mp4、（本人深有体会，因为没加后缀，搞了好长时间）
 [self writeToCachePath:downloadData time:media.timeCreated];//数据写入缓存- (void)writeToCachePath:(id)cacheData time:(NSString*)createTime &amp;#123">
-<meta property="og:updated_time" content="2017-02-21T14:33:24.000Z">
+<meta property="og:updated_time" content="2017-02-22T04:41:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="保存视频">
 <meta name="twitter:description" content="保存视频//部分代码，注意文件夹后缀加上保存文件的类型，比如mp3、mp4、（本人深有体会，因为没加后缀，搞了好长时间）
@@ -396,7 +396,7 @@
         <h1 id="保存视频"><a href="#保存视频" class="headerlink" title="保存视频"></a>保存视频</h1><p>//部分代码，注意文件夹后缀加上保存文件的类型，比如mp3、mp4、（本人深有体会，因为没加后缀，搞了好长时间）</p>
 <figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line">[self <span class="string">writeToCachePath:</span>downloadData <span class="string">time:</span>media.timeCreated];</div><div class="line"></div><div class="line"><span class="comment">//数据写入缓存</span></div><div class="line">- (<span class="keyword">void</span>)<span class="string">writeToCachePath:</span>(id)cacheData <span class="string">time:</span>(NSString*)createTime &#123;</div><div class="line">    NSString * documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) <span class="string">objectAtIndex:</span><span class="number">0</span>];</div><div class="line">    createTime = [createTime <span class="string">stringByReplacingOccurrencesOfString:</span>@<span class="string">"-"</span> <span class="string">withString:</span>@<span class="string">""</span>];</div><div class="line">    createTime = [createTime <span class="string">stringByReplacingOccurrencesOfString:</span>@<span class="string">"/"</span> <span class="string">withString:</span>@<span class="string">""</span>];</div><div class="line">    createTime = [createTime <span class="string">stringByReplacingOccurrencesOfString:</span>@<span class="string">" "</span> <span class="string">withString:</span>@<span class="string">""</span>];</div><div class="line"></div><div class="line"> NSString* videoCachePath = [documentsDirectory <span class="string">stringByAppendingPathComponent:</span>[NSString <span class="string">stringWithFormat:</span>@<span class="string">"videodingxu/%@.mp4"</span>,createTime]];</div><div class="line"></div><div class="line">    [cacheData <span class="string">writeToFile:</span>videoCachePath <span class="string">atomically:</span>YES];</div><div class="line">    </div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>//下面这段代码是去除多余的标点符号</p>
-<figure class="highlight plain"><figcaption><span>= [createTime stringByReplacingOccurrencesOfString:@"-" withString:@""];</span></figcaption><table><tr><td class="code"><pre><div class="line">createTime = [createTime stringByReplacingOccurrencesOfString:@&quot;/&quot; withString:@&quot;&quot;];</div><div class="line">createTime = [createTime stringByReplacingOccurre</div></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="code"><pre><div class="line"><span class="attr">createTime</span> = [createTime stringByReplacingOccurrencesOfString:@<span class="string">"-"</span> withString:@<span class="string">""</span>];</div><div class="line"><span class="attr">createTime</span> = [createTime stringByReplacingOccurrencesOfString:@<span class="string">"/"</span> withString:@<span class="string">""</span>];</div><div class="line"><span class="attr">createTime</span> = [createTime stringByReplacingOccurre</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -437,6 +437,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/22/常见的error/" rel="prev" title=" 常见的error">
+                 常见的error <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -514,7 +518,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
