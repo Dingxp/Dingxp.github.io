@@ -284,6 +284,171 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/23/IOS传值/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="DingXP">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="桃花坞里桃花庵/桃花庵里桃花仙">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="桃花坞里桃花庵/桃花庵里桃花仙" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/23/IOS传值/" itemprop="url">
+                  IOS传值
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-23T22:43:10+08:00">
+                2017-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/23/IOS传值/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/23/IOS传值/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ios传值"><a href="#ios传值" class="headerlink" title="ios传值"></a>ios传值</h1><p>iOS七种传值总结（关键代码）<br>ViewController = 启动后的主界面<br>ZQMainVC = 主界面中的二级界面<br>ZQResignVC = 主界面中的二级界面<br>ZQShareManager = 单例的类<br>RedView = ViewController的子View</p>
+<h2 id="初始化传值：适用上一级界面往下一级界面传值-ViewController-gt-ZQMainVC"><a href="#初始化传值：适用上一级界面往下一级界面传值-ViewController-gt-ZQMainVC" class="headerlink" title="初始化传值：适用上一级界面往下一级界面传值 ViewController-&gt; ZQMainVC"></a>初始化传值：适用上一级界面往下一级界面传值 ViewController-&gt; ZQMainVC</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">=============ZQMainVC类============</div><div class="line">      <span class="comment">//写个类似构造函数的方法</span></div><div class="line">       @implementationZQMainVC</div><div class="line"> -(<span class="keyword">id</span>)initWithUserName:(<span class="built_in">NSString</span>*)userName WithPassWord:(<span class="built_in">NSString</span> *)passWord &#123;</div><div class="line">                <span class="keyword">self</span> = [<span class="keyword">super</span> init];</div><div class="line">           <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</div><div class="line">              _passWord=passWord;</div><div class="line">              _userName=userName;</div><div class="line">                    &#125;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line">=============ViewController类=============</div><div class="line">      <span class="comment">//调用传值处</span></div><div class="line">      ZQMainVC *mainVC=[[ZQMainVC alloc]<span class="string">initWithUserName:</span>_userNameText.<span class="string">textWithPassWord:</span>_passWordText.text];</div><div class="line">      [self.navigationController <span class="string">pushViewController:</span>mainVC <span class="string">animated:</span>YES];</div></pre></td></tr></table></figure>
+<h2 id="属性传值：只适用于上级界面对下一级界面的跳转赋值-ViewController-gt-ZQMainVC和初始化传值比较，代码可读性低"><a href="#属性传值：只适用于上级界面对下一级界面的跳转赋值-ViewController-gt-ZQMainVC和初始化传值比较，代码可读性低" class="headerlink" title="属性传值：只适用于上级界面对下一级界面的跳转赋值 ViewController-&gt; ZQMainVC和初始化传值比较，代码可读性低"></a>属性传值：只适用于上级界面对下一级界面的跳转赋值 ViewController-&gt; ZQMainVC和初始化传值比较，代码可读性低</h2><figure class="highlight sqf"><table><tr><td class="code"><pre><div class="line">=============ViewController类=============</div><div class="line">        ZQMainVC *mainVC=[[ZQMainVC alloc]init];</div><div class="line"><span class="comment">//直接对属性赋值,</span></div><div class="line">        mainVC.userName=<span class="variable">_userNameText</span>.<span class="built_in">text</span>;</div><div class="line">        mainVC.passWord=<span class="variable">_passWordText</span>.<span class="built_in">text</span>;</div><div class="line">        [self.navigationController pushViewController:mainVC animated:YES];</div></pre></td></tr></table></figure>
+<p>##代理传值：适合下一级界面回传值给上一级 ZQResignVC-&gt; ViewController<br><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">=============ZQResignVC类=============</div><div class="line">       <span class="comment">//写代理方法</span></div><div class="line">       @protocolZQResignVCDelegate &lt;<span class="built_in">NSObject</span>&gt;</div><div class="line">       -(<span class="keyword">void</span>)sendMessage:(<span class="built_in">NSString</span>*)userName withPassword:(<span class="built_in">NSString</span> *)password;</div><div class="line">       <span class="keyword">@end</span></div><div class="line"> </div><div class="line">       <span class="comment">//定义属性</span></div><div class="line">       <span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>)<span class="keyword">id</span>&lt;ZQResignVCDelegate&gt;delegate;</div><div class="line"> </div><div class="line">       <span class="comment">//调用处</span></div><div class="line">       -(<span class="keyword">void</span>)buttonClick:(<span class="built_in">UIButton</span>*)button&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.delegate&amp;&amp;[<span class="keyword">self</span>.delegaterespondsToSelector:<span class="keyword">@selector</span>(sendMessage:withPassword:)]) &#123;</div><div class="line">      [<span class="keyword">self</span>.delegate sendMessage:_userNameText.textwithPassword:_passWordText.text];</div><div class="line">    &#125;</div><div class="line">   </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">=============ViewController类=============</div><div class="line">        ZQResignVC *resignVC=[[ZQResignVC alloc]init];</div><div class="line"><span class="comment">// 设置代理</span></div><div class="line">        resignVC.delegate=<span class="keyword">self</span>;</div><div class="line">        [<span class="keyword">self</span>.navigationController pushViewController:resignVC animated:<span class="literal">YES</span>];</div></pre></td></tr></table></figure>
+<h2 id="单例传值：对没有跳转关系的两个controller进行传值（有拿Appdelegate当单例的用法，一个意思，区别在于Appdelegate中一大堆的属性。。。乱）"><a href="#单例传值：对没有跳转关系的两个controller进行传值（有拿Appdelegate当单例的用法，一个意思，区别在于Appdelegate中一大堆的属性。。。乱）" class="headerlink" title="单例传值：对没有跳转关系的两个controller进行传值（有拿Appdelegate当单例的用法，一个意思，区别在于Appdelegate中一大堆的属性。。。乱）"></a>单例传值：对没有跳转关系的两个controller进行传值（有拿Appdelegate当单例的用法，一个意思，区别在于Appdelegate中一大堆的属性。。。乱）</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">============= ZQShareManager=============</div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ZQShareManager</span> : <span class="title">NSObject</span></span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">copy</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSString</span> *userName;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">copy</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSString</span> *password;</div><div class="line"><span class="comment">// 申明一个类方法</span></div><div class="line">+ (ZQShareManager *)shareUserInfo;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ZQShareManager</span></span></div><div class="line">+ (ZQShareManager *)shareUserInfo&#123;</div><div class="line">    <span class="keyword">static</span> ZQShareManager *shareManager = <span class="literal">nil</span>;</div><div class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> predicate;</div><div class="line">    <span class="built_in">dispatch_once</span>(&amp;predicate, ^&#123;</div><div class="line">         shareManager = [[<span class="keyword">self</span> alloc] init];</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> shareManager;</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>怎么用就不写了，在想保存的地方对ZQShareManager的属性赋值，在想用的地方调用ZQShareManager中的属性</p>
+<h2 id="NSuserDefault传值：对没有跳转关系的两个controller进行传值（类似弄个sqlite数据库传值了，或写个文件传值，区别单例在于，应用被kill后再次启动还有值，而上面的单例重启应用后，就木有值了）"><a href="#NSuserDefault传值：对没有跳转关系的两个controller进行传值（类似弄个sqlite数据库传值了，或写个文件传值，区别单例在于，应用被kill后再次启动还有值，而上面的单例重启应用后，就木有值了）" class="headerlink" title="NSuserDefault传值：对没有跳转关系的两个controller进行传值（类似弄个sqlite数据库传值了，或写个文件传值，区别单例在于，应用被kill后再次启动还有值，而上面的单例重启应用后，就木有值了）"></a>NSuserDefault传值：对没有跳转关系的两个controller进行传值（类似弄个sqlite数据库传值了，或写个文件传值，区别单例在于，应用被kill后再次启动还有值，而上面的单例重启应用后，就木有值了）</h2><figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line">=============ViewController类=============</div><div class="line">-(<span class="keyword">void</span>)<span class="string">buttonClick:</span>(UIButton *)button&#123;</div><div class="line"><span class="comment">// 赋值保存</span></div><div class="line">        [[NSUserDefaults standardUserDefaults]<span class="string">setValue:</span>_userNameText.text <span class="string">forKey:</span>@<span class="string">"UserId"</span>];</div><div class="line">        [[NSUserDefaults standardUserDefaults]<span class="string">setValue:</span>_passWordText.text <span class="string">forKey:</span>@<span class="string">"PassWord"</span>];</div><div class="line"><span class="comment">// 写入NSUserDefaults</span></div><div class="line">        [[NSUserDefaults standardUserDefaults]synchronize];</div><div class="line">        ZQMainVC *mainVC=[[ZQMainVC alloc]init];</div><div class="line">          [self.navigationController <span class="string">pushViewController:</span>mainVC <span class="string">animated:</span>YES];</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">=============ZQMainVC类============</div><div class="line"><span class="comment">// 需要用到的地方取出NSUserDefaults中的值</span></div><div class="line">       <span class="keyword">self</span>.userName=[[<span class="built_in">NSUserDefaults</span> standardUserDefaults]objectForKey:<span class="string">@"UserId"</span>];</div><div class="line">    <span class="keyword">self</span>.passWord=[[<span class="built_in">NSUserDefaults</span> standardUserDefaults]objectForKey:<span class="string">@"PassWord"</span>];</div></pre></td></tr></table></figure>
+<h2 id="通知传值：对没有跳转关系的两个controller进行传值，这个要用的话一定要谨慎，主要用在线程中，比如下载东西，你都不知道什么时候会触发下载完的时候，才考虑用发通知的方式，这东西用多了，代码可读性变得非常差"><a href="#通知传值：对没有跳转关系的两个controller进行传值，这个要用的话一定要谨慎，主要用在线程中，比如下载东西，你都不知道什么时候会触发下载完的时候，才考虑用发通知的方式，这东西用多了，代码可读性变得非常差" class="headerlink" title="通知传值：对没有跳转关系的两个controller进行传值，这个要用的话一定要谨慎，主要用在线程中，比如下载东西，你都不知道什么时候会触发下载完的时候，才考虑用发通知的方式，这东西用多了，代码可读性变得非常差"></a>通知传值：对没有跳转关系的两个controller进行传值，这个要用的话一定要谨慎，主要用在线程中，比如下载东西，你都不知道什么时候会触发下载完的时候，才考虑用发通知的方式，这东西用多了，代码可读性变得非常差</h2><figure class="highlight dart"><table><tr><td class="code"><pre><div class="line">=============ZQResignVC类=============</div><div class="line"><span class="comment">// 点击按钮发送通知</span></div><div class="line">-(<span class="keyword">void</span>)buttonClick:(UIButton *)button&#123;</div><div class="line">[self textResignFirstResponder];</div><div class="line">    <span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>通知传值<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*/</span></span></div><div class="line">    NSArray *array=[[NSArray alloc]initWithObjects:_userNameText.text,_passWordText.text, nil];</div><div class="line">    <span class="comment">//发送通知  sendMessage表示通知详情 array表示传输数据</span></div><div class="line">    [[NSNotificationCenter defaultCenter] postNotificationName:@<span class="string">"ZQSendMessage"</span> object:array];</div><div class="line">    <span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">**通知传值**</span><span class="strong">*****</span><span class="strong">*****</span><span class="emphasis">***</span>*/</span></span></div><div class="line">    [self.navigationController popToRootViewControllerAnimated: YES];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line">============= ViewController =============</div><div class="line"><span class="comment">//-viewDidLoad方法中注册接受通知</span></div><div class="line">[[NSNotificationCenter defaultCenter] <span class="string">addObserver:</span>self <span class="string">selector:</span><span class="meta">@selector</span>(<span class="string">getZQMessage:</span>) <span class="string">name:</span>@<span class="string">"ZQSendMessage"</span> <span class="string">object:</span>nil];</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//解析通知中的数据赋值</span></div><div class="line">-(<span class="keyword">void</span>)<span class="string">getZQMessage:</span>(NSNotification *)notification&#123;</div><div class="line">    NSArray *array=[[NSArray alloc]<span class="string">initWithArray:</span>notification.object];</div><div class="line">    _userNameText.text=array[<span class="number">0</span>];</div><div class="line">    _passWordText.text=array[<span class="number">1</span>];  </div><div class="line">&#125;</div><div class="line"><span class="comment">// 记得界面如果界面销毁移除掉通知监听</span></div><div class="line">-(<span class="keyword">void</span>)dealloc</div><div class="line">&#123;</div><div class="line">    [[NSNotificationCenter defaultCenter] <span class="string">removeObserver:</span>self];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="block传值：适用于子界面中的点击事件回传，比在子界面写一大堆delegeta要看着方便，用于子线程回调也OK"><a href="#block传值：适用于子界面中的点击事件回传，比在子界面写一大堆delegeta要看着方便，用于子线程回调也OK" class="headerlink" title="block传值：适用于子界面中的点击事件回传，比在子界面写一大堆delegeta要看着方便，用于子线程回调也OK"></a>block传值：适用于子界面中的点击事件回传，比在子界面写一大堆delegeta要看着方便，用于子线程回调也OK</h2><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line">=============RedView=============</div><div class="line"><span class="class"><span class="keyword">@class</span> <span class="title">RedView</span>;</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>(^TouchButton)(RedView *);</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">RedView</span> : <span class="title">UIView</span></span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>)TouchButton block;</div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">retain</span>) <span class="built_in">NSString</span> *title;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">RedView</span>()</span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">UIButton</span> *button;</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">RedView</span></span></div><div class="line">- (<span class="keyword">id</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame&#123;</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</div><div class="line">        button = [<span class="built_in">UIButton</span> buttonWithType:<span class="built_in">UIButtonTypeSystem</span>];</div><div class="line">        [button addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(buttonClick:) forControlEvents:<span class="built_in">UIControlEventTouchUpInside</span>];</div><div class="line">        button.frame = frame;</div><div class="line">        button.backgroundColor = [<span class="built_in">UIColor</span> redColor];</div><div class="line">        [<span class="keyword">self</span> addSubview:button];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)buttonClick:(<span class="keyword">id</span>)sender&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"点击"</span>);</div><div class="line">    _title = <span class="string">@"装请带上我飞"</span>;</div><div class="line">    _block(<span class="keyword">self</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><div class="line">============<span class="symbol">=ViewController</span>=============</div><div class="line"><span class="symbol">RedView</span> *rView = [[RedView alloc]initWithFrame:CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>)]<span class="comment">;</span></div><div class="line">    rView.<span class="keyword">block </span>= ^(RedView *<span class="keyword">button)&#123;</span></div><div class="line">// 注意<span class="keyword">block的循环引用问题</span></div><div class="line">        title<span class="meta">.text</span> =  <span class="keyword">button.title;</span></div><div class="line">    &#125;<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>以上是今天项目遇到的一些，比较纠结，不知道用哪种比较好，就总结了一下。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/22/IOS定时器/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1696,134 +1861,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/06/丁旭朋/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="DingXP">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="桃花坞里桃花庵/桃花庵里桃花仙">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="桃花坞里桃花庵/桃花庵里桃花仙" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/06/丁旭朋/" itemprop="url">
-                  丁旭朋
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-06T21:05:47+08:00">
-                2017-02-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/06/丁旭朋/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/06/丁旭朋/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1875,7 +1912,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
